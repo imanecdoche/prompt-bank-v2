@@ -1,0 +1,6 @@
+{
+  "name": "Prompt Bank",
+  "description": "Penyimpan prompt dengan hierarki Platform > Project > Prompt dilengkapi tag, filter, pencarian, dan fitur duplikasi/perpindahan data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

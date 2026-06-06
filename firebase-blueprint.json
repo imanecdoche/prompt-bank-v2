@@ -1,0 +1,158 @@
+{
+  "entities": {
+    "prompt": {
+      "title": "Prompt",
+      "description": "An individual prompt template",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the prompt"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of the prompt"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category of the prompt"
+        },
+        "description": {
+          "type": "string",
+          "description": "A deep description of what the prompt does"
+        },
+        "content": {
+          "type": "string",
+          "description": "The exact prompt text template"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags associated with this prompt"
+        }
+      },
+      "required": ["id", "title", "category", "description", "content", "tags"]
+    },
+    "project": {
+      "title": "Project",
+      "description": "A collection of prompt templates belonging to a platform",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the project"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of the project"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags associated with this project"
+        },
+        "images": {
+          "type": "array",
+          "description": "List of base64 data URIs or image URLs uploaded by user"
+        },
+        "prompts": {
+          "type": "array",
+          "description": "Prompts included in this project"
+        }
+      },
+      "required": ["id", "title", "tags", "prompts"]
+    },
+    "platform": {
+      "title": "Platform",
+      "description": "A high-level technology, brand, or environment category",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the platform"
+        },
+        "title": {
+          "type": "string",
+          "description": "Name of the platform"
+        },
+        "tags": {
+          "type": "array",
+          "description": "List of tags associated with this platform"
+        },
+        "image": {
+          "type": "string",
+          "description": "Base64 data URI of the platform cover image"
+        },
+        "projects": {
+          "type": "array",
+          "description": "Projects belonging to this platform"
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "Underlying user UID that owns this platform document"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The creation date"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The last updated date"
+        }
+      },
+      "required": ["id", "title", "tags", "projects", "ownerId"]
+    },
+    "user": {
+      "title": "User",
+      "description": "A registered user account profile with verification checks",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique authenticated user ID"
+        },
+        "email": {
+          "type": "string",
+          "description": "Account email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Public name displayed in the interface"
+        },
+        "username": {
+          "type": "string",
+          "description": "Custom alphanumeric username identifier"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Image URL or data URI of the user avatar"
+        },
+        "provider": {
+          "type": "string",
+          "description": "Authentication provider method used"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Account creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last updated profile timestamp"
+        }
+      },
+      "required": ["uid", "email", "displayName", "username", "photoURL", "provider"]
+    }
+  },
+  "firestore": {
+    "/platforms/{platformId}": {
+      "schema": "platform",
+      "description": "User platform profiles hosting project lists and prompts"
+    },
+    "/users/{email}": {
+      "schema": "user",
+      "description": "Account definitions identifying registered email methods and profiles"
+    }
+  }
+}
